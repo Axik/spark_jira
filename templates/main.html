@@ -1,0 +1,59 @@
+{% extends "bootstrap/base.html" %}
+{% block head %}
+    {{ super() }}  
+    <style type="text/css">
+    body {
+          padding-top: 50px;
+        }
+        .starter-template {
+          padding: 40px 15px;
+          text-align: center;
+        }
+    </style>
+{% endblock head %}
+{% block title %}Predict Spend Time{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+<div class="container">
+{% block content %}
+    <div class="starter-template">
+        <h2>Predict spend time on Jira Task!</h2>
+        <div class="row">
+            <div class="col-md-2">
+                {% if prev_page %}
+                    <a href="/{{ prev_page }}">Prev</a>
+                {% endif %}
+                <a href="/{{ next_page }}">Next</a>
+            </div>
+        </div>
+        {% if opened_tasks %}
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Opener</th>
+                    <th>Assignee</th>
+                    <th>Type</th>
+                    <th>Summary</th>
+                    <th>Opened</th>
+                    <th>Predicted days to resolve</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item, prediction in opened_tasks %}
+                <tr>
+                    <td>{{ item.Opener }}</td>
+                    <td>{{ item.Assignee }}</td>
+                    <td>{{ item.Type }}</td>
+                    <td>{{ item.Summary }}</td>
+                    <td>{{ item.Opened }}</td>
+                    <td>{{ prediction }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+{% endblock %}
+</div>

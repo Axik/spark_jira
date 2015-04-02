@@ -1,1 +1,3 @@
 *.pyc
+.datarobotrc
+*.csv
